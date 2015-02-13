@@ -18,7 +18,7 @@ if [ ! -d "/srv/env" ]; then
     # Export environment variables to activate script
     echo "export DJANGO_SECRET_KEY=neAYI4sgkKx0ZfRv4ltprXVrDK3g" >> /srv/env/bin/activate
     echo "export DJANGO_DEBUG=True" >> /srv/env/bin/activate
-    echo "export DJANGO_DATABASE_URL=postgres://popcorn:@localhost:5432/checkup" >> /srv/env/bin/activate
+    echo "export DJANGO_DATABASE_URL=postgres://popcorn:five@localhost:5432/checkup" >> /srv/env/bin/activate
 fi
 
 source /srv/env/bin/activate
@@ -27,8 +27,8 @@ pip install -r /vagrant/checkup-backend-django/requirements.pip
 # Create PostgreSQL user & database
 if [ -z "$(su --login postgres --command 'psql -l | grep checkup')" ]; then
     echo "Creating user..."
-    su --login postgres --command "createuser popcorn"
-    su --login postgres --command "createdb checkup -O popcorn"
+    su --login postgres --command "psql -c \"CREATE USER popcorn WITH PASSWORD 'five'\""
+    su --login postgres --command "psql -C \"CREATE DATABASE checkup OWNER popcorn\""
 fi
 
 
