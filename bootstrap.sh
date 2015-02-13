@@ -14,7 +14,7 @@ pip install uwsgi virtualenv
 
 # Create virtualenv environment
 if [ ! -d "/srv/env" ]; then
-    virtualenv /srv/env
+    su --vagrant --command "virtualenv /srv/env"
     # Export environment variables to activate script
     echo "export DJANGO_SECRET_KEY=neAYI4sgkKx0ZfRv4ltprXVrDK3g" >> /srv/env/activate
     echo "export DJANGO_DEBUG=True" >> /srv/env/activate
