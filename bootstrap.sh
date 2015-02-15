@@ -28,6 +28,7 @@ pip install -r /vagrant/checkup-backend-django/requirements.pip
 if [ -z "$(su --login postgres --command 'psql -l | grep checkup')" ]; then
     echo "Creating user..."
     su --login postgres --command "psql -c \"CREATE USER popcorn WITH PASSWORD 'five'\""
+    su --login postgres --command "psql -c \"ALTER USER popcorn CREATEDB\""
     su --login postgres --command "psql -C \"CREATE DATABASE checkup OWNER popcorn\""
 fi
 
