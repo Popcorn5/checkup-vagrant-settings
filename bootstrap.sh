@@ -18,11 +18,21 @@ if [ ! -d "/srv/env" ]; then
     # Export environment variables to activate script
     echo "export DJANGO_SECRET_KEY=neAYI4sgkKx0ZfRv4ltprXVrDK3g" >> /srv/env/bin/activate
     echo "export DJANGO_DEBUG=True" >> /srv/env/bin/activate
+    echo "export DJANGO_STATIC_ROOT=/srv/static" >> /srv/env/bin/activate
+    echo "export DJANGO_MEDIA_ROOT=/srv/media" >> /srv/env/bin/activate
     echo "export DJANGO_MANDRILL_KEY=OklzU9hKJFG6F3w0ltLpoA" >> /srv/env/bin/activate
 fi
 
 source /srv/env/bin/activate
 pip install -r /vagrant/checkup-backend-django/requirements.pip
+
+if [ ! -d "/srv/static" ]; then
+    mkdir /srv/static
+fi
+
+if [ ! -d "/srv/media" ]; then
+    mkdir /srv/media
+fi
 
 # Create PostgreSQL user & database
 if [ -z "$(su --login postgres --command 'psql -l | grep checkup')" ]; then
