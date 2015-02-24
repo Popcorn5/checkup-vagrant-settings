@@ -34,6 +34,9 @@ if [ ! -d "/srv/media" ]; then
     mkdir /srv/media
 fi
 
+python /vagrant/checkup-backend-django/checkup/manage.py collectstatic
+
+
 # Create PostgreSQL user & database
 if [ -z "$(su --login postgres --command 'psql -l | grep checkup')" ]; then
     echo "Creating user..."
