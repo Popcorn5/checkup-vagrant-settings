@@ -18,11 +18,7 @@ if [ ! -d "/srv/env" ]; then
     # Export environment variables to activate script
     echo "export DJANGO_SECRET_KEY=neAYI4sgkKx0ZfRv4ltprXVrDK3g" >> /srv/env/bin/activate
     echo "export DJANGO_DEBUG=True" >> /srv/env/bin/activate
-    echo "export DJANGO_DATABASE_URL=postgres://popcorn:five@localhost:5432/checkup" >> /srv/env/bin/activate
-    echo "export DJANGO_EMAIL_HOST=smtp.mandrillapp.com" >> /srv/env/bin/activate
-    echo "export DJANGO_EMAIL_HOST_USER=jae@popcorn5.com" >> /srv/env/bin/activate
-    echo "export DJANGO_EMAIL_HOST_PASSWORD=OklzU9hKJFG6F3w0ltLpoA" >> /srv/env/bin/activate
-    echo "export DJANGO_EMAIL_PORT=587" >> /srv/env/bin/activate
+    echo "export DJANGO_MANDRILL_KEY=OklzU9hKJFG6F3w0ltLpoA" >> /srv/env/bin/activate
 fi
 
 source /srv/env/bin/activate
