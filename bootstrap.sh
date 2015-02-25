@@ -20,6 +20,7 @@ if [ ! -d "/srv/env" ]; then
     echo "export DJANGO_DEBUG=True" >> /srv/env/bin/activate
     echo "export DJANGO_STATIC_ROOT=/srv/static" >> /srv/env/bin/activate
     echo "export DJANGO_MEDIA_ROOT=/srv/media" >> /srv/env/bin/activate
+    echo "export DJANGO_DATABASE_URL=postgres://popcorn:five@localhost:5432/checkup" >> /srv/env/bin/activate
     echo "export DJANGO_MANDRILL_KEY=OklzU9hKJFG6F3w0ltLpoA" >> /srv/env/bin/activate
 fi
 
@@ -34,7 +35,7 @@ if [ ! -d "/srv/media" ]; then
     mkdir /srv/media
 fi
 
-python /vagrant/checkup-backend-django/checkup/manage.py collectstatic
+python /vagrant/checkup-backend-django/checkup/manage.py collectstatic --noinput
 
 
 # Create PostgreSQL user & database
