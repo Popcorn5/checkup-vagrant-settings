@@ -1,4 +1,6 @@
 .DS_Store
 .vagrant/
 venv/
+venv3/
+sublime/
 checkup-backend-django/
