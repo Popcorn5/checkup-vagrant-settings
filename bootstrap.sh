@@ -36,7 +36,6 @@ if [ ! -d "/srv/media" ]; then
 fi
 
 python /vagrant/checkup-backend-django/checkup/manage.py collectstatic --noinput
-python /vagrant/checkup-backend-django/checkup/manage.py migrate
 
 
 # Create PostgreSQL user & database
@@ -46,6 +45,8 @@ if [ -z "$(su --login postgres --command 'psql -l | grep checkup')" ]; then
     su --login postgres --command "psql -c \"ALTER USER popcorn CREATEDB\""
     su --login postgres --command "psql -c \"CREATE DATABASE checkup OWNER popcorn\""
 fi
+
+python /vagrant/checkup-backend-django/checkup/manage.py migrate
 
 
 # Create logging folder...
