@@ -36,6 +36,7 @@ if [ ! -d "/srv/media" ]; then
 fi
 
 python /vagrant/checkup-backend-django/checkup/manage.py collectstatic --noinput
+python /vagrant/checkup-backend-django/checkup/manage.py migrate
 
 
 # Create PostgreSQL user & database
